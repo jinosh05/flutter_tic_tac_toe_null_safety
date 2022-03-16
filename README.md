@@ -17,6 +17,5 @@
 
 
 ## Contact me 📧
-#### Email : mrbouaggadmoez@gmail.com
-#### Website : https://bouaggadmoez.netlify.com/
+#### Email : jinosh05@gmail.com
 # flutter_tic_tac_toe_null_safety
