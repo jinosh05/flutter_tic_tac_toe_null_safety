@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tic_tac/theme/theme.dart';
 
 class X extends StatelessWidget {
-  double size;
-  double height;
+  final double size;
+  final double height;
 
   X(this.size, this.height);
 

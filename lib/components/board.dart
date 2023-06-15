@@ -43,7 +43,7 @@ class _BoardState extends State<Board> {
 
             String title = 'Winner';
 
-            if (state.value == null) {
+            if (state.value.isEmpty) {
               title = "Draw";
             }
 

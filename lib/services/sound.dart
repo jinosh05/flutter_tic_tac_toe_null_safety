@@ -2,6 +2,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:rxdart/rxdart.dart';
 
 class SoundService {
+  // ignore: close_sinks
   BehaviorSubject<bool>? _enableSound$;
   BehaviorSubject<bool>? get enableSound$ => _enableSound$;
   late AudioPlayer _fixedPlayer;

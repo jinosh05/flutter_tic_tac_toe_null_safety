@@ -1,7 +1,6 @@
 import 'dart:async';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:tic_tac/components/board.dart';
 import 'package:tic_tac/components/o.dart';
 import 'package:tic_tac/components/x.dart';

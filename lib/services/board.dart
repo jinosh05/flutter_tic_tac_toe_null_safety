@@ -1,3 +1,5 @@
+// ignore_for_file: close_sinks
+
 import 'dart:math' as math;
 
 import 'package:rxdart/rxdart.dart';
