@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:tic_tac/components/x.dart';
 import 'package:tic_tac/services/alert.dart';
 import 'package:tic_tac/services/board.dart';
 import 'package:tic_tac/services/provider.dart';
 import 'package:tic_tac/theme/theme.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 
 import 'o.dart';
 
@@ -54,18 +53,16 @@ class _BoardState extends State<Board> {
                         children: <Widget>[X(50, 20), O(50, MyTheme.green)],
                       ));
 
-            WidgetsBinding.instance.addPostFrameCallback((_) => {
-                  Alert(
-                    context: context,
-                    title: title,
-                    style: alertService.resultAlertStyle,
-                    buttons: [],
-                    content: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[body]),
-                  ).show()
-                });
+            WidgetsBinding.instance.addPostFrameCallback((_) => Alert(
+                  context: context,
+                  title: title,
+                  style: alertService.resultAlertStyle,
+                  buttons: [],
+                  content: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[body]),
+                ).show());
           }
 
           return Container(
