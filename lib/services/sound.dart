@@ -9,15 +9,16 @@ class SoundService {
 
   SoundService() {
     _enableSound$ = BehaviorSubject<bool>.seeded(true);
-    _fixedPlayer = AudioPlayer(mode: PlayerMode.LOW_LATENCY);
-    _player = AudioCache(fixedPlayer: _fixedPlayer);
+    _fixedPlayer = AudioPlayer();
+    _player = AudioCache();
     _player.loadAll(['x.mp3', 'o.mp3', "click.mp3"]);
   }
 
   playSound(String sound) {
     bool isSoundEnabled = _enableSound$.value;
     if (isSoundEnabled) {
-      _player.play("$sound.mp3");
+      _fixedPlayer.play(AssetSource("$sound.mp3"));
+      // _fixedPlayer.play("$sound.mp3");
     }
   }
 }

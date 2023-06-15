@@ -9,12 +9,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.4
-  percent_indicator: ^3.4.0
-  rxdart: ^0.27.3
-  get_it: ^7.2.0
-  rflutter_alert: ^2.0.4
-  audioplayers: ^0.20.1
+  cupertino_icons: ^1.0.5
+  percent_indicator: ^4.2.3
+  rxdart: ^0.27.7
+  get_it: ^7.6.0
+  rflutter_alert: ^2.0.7
+  audioplayers: ^3.0.1
   sliding_up_panel: ^2.0.0+1
 
 dev_dependencies:
