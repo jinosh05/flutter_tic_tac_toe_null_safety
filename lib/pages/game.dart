@@ -14,12 +14,12 @@ class GamePage extends StatefulWidget {
 }
 
 class GamePageState extends State<GamePage> {
-  final boardService = locator<BoardService>();
+  final BoardService? boardService = locator<BoardService>();
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        boardService.newGame();
+        boardService!.newGame();
         return Future.value(true);
       },
       child: SafeArea(
@@ -27,13 +27,13 @@ class GamePageState extends State<GamePage> {
           backgroundColor: Colors.white,
           body: SafeArea(
             child: StreamBuilder<MapEntry<int, int>>(
-                stream: boardService.score$,
+                stream: boardService!.score$,
                 builder: (context, AsyncSnapshot<MapEntry<int, int>> snapshot) {
                   if (!snapshot.hasData) {
                     return Container();
                   }
-                  final int xScore = snapshot.data.key;
-                  final int oScore = snapshot.data.value;
+                  final int xScore = snapshot.data!.key;
+                  final int oScore = snapshot.data!.value;
 
                   return Container(
                     // color: Colors.red,
@@ -145,7 +145,7 @@ class GamePageState extends State<GamePage> {
                               IconButton(
                                 icon: Icon(Icons.home),
                                 onPressed: () {
-                                  boardService.newGame();
+                                  boardService!.newGame();
                                   Navigator.of(context)
                                       .popUntil((route) => route.isFirst);
                                 },

@@ -5,24 +5,24 @@ import 'package:tic_tac/services/sound.dart';
 import 'package:tic_tac/theme/theme.dart';
 
 class SettingsPage extends StatefulWidget {
-  SettingsPage({Key key}) : super(key: key);
+  SettingsPage({Key? key}) : super(key: key);
 
   SettingsPageState createState() => SettingsPageState();
 }
 
 class SettingsPageState extends State<SettingsPage> {
-  final soundService = locator<SoundService>();
+  final SoundService? soundService = locator<SoundService>();
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<bool>(
-        stream: soundService.enableSound$,
+        stream: soundService!.enableSound$,
         builder: (context, AsyncSnapshot<bool> snapshot) {
           if (!snapshot.hasData) {
             return Container();
           }
 
-          final bool isSoundEnabled = snapshot.data;
+          final bool isSoundEnabled = snapshot.data!;
 
           return Scaffold(
             body: Container(
@@ -67,7 +67,7 @@ class SettingsPageState extends State<SettingsPage> {
                         Expanded(child: Container()),
                         CupertinoSwitch(
                           onChanged: (e) {
-                            soundService.enableSound$.add(e);
+                            soundService!.enableSound$!.add(e);
                           },
                           value: isSoundEnabled,
                           activeColor: MyTheme.orange,

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class AlertService {
-  AlertStyle _resultAlertStyle;
-  AlertStyle get resultAlertStyle => _resultAlertStyle;
+  AlertStyle? _resultAlertStyle;
+  AlertStyle? get resultAlertStyle => _resultAlertStyle;
 
-  AlertStyle _settingsAlertStyle;
-  AlertStyle get settingsAlertStyle => _settingsAlertStyle;
+  AlertStyle? _settingsAlertStyle;
+  AlertStyle? get settingsAlertStyle => _settingsAlertStyle;
 
   AlertService() {
     _resultAlertStyle = AlertStyle(

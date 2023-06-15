@@ -1,62 +1,64 @@
-import 'package:rxdart/rxdart.dart';
 import 'dart:math' as math;
 
+import 'package:rxdart/rxdart.dart';
 import 'package:tic_tac/services/provider.dart';
 import 'package:tic_tac/services/sound.dart';
 
-final soundService = locator<SoundService>();
+final SoundService? soundService = locator<SoundService>();
 
 enum BoardState { Done, Play }
+
 enum GameMode { Solo, Multi }
 
 class BoardService {
-  BehaviorSubject<List<List<String>>> _board$;
-  BehaviorSubject<List<List<String>>> get board$ => _board$;
+  BehaviorSubject<List<List<String?>>>? _board$;
+  BehaviorSubject<List<List<String?>>>? get board$ => _board$;
 
-  BehaviorSubject<String> _player$;
-  BehaviorSubject<String> get player$ => _player$;
+  BehaviorSubject<String?>? _player$;
+  BehaviorSubject<String?>? get player$ => _player$;
 
-  BehaviorSubject<MapEntry<BoardState, String>> _boardState$;
-  BehaviorSubject<MapEntry<BoardState, String>> get boardState$ => _boardState$;
+  BehaviorSubject<MapEntry<BoardState, String?>>? _boardState$;
+  BehaviorSubject<MapEntry<BoardState, String?>>? get boardState$ =>
+      _boardState$;
 
-  BehaviorSubject<GameMode> _gameMode$;
-  BehaviorSubject<GameMode> get gameMode$ => _gameMode$;
+  BehaviorSubject<GameMode>? _gameMode$;
+  BehaviorSubject<GameMode>? get gameMode$ => _gameMode$;
 
-  BehaviorSubject<MapEntry<int, int>> _score$;
-  BehaviorSubject<MapEntry<int, int>> get score$ => _score$;
+  BehaviorSubject<MapEntry<int, int>>? _score$;
+  BehaviorSubject<MapEntry<int, int>>? get score$ => _score$;
 
-  String _start;
+  String? _start;
 
   BoardService() {
     _initStreams();
   }
 
   void newMove(int i, int j) {
-    String player = _player$.value;
-    List<List<String>> currentBoard = _board$.value;
+    String? player = _player$!.value;
+    List<List<String?>> currentBoard = _board$!.value;
 
     currentBoard[i][j] = player;
     _playMoveSound(player);
-    _board$.add(currentBoard);
+    _board$!.add(currentBoard);
     switchPlayer(player);
 
     bool isWinner = _checkWinner(i, j);
 
     if (isWinner) {
       _updateScore(player);
-      _boardState$.add(MapEntry(BoardState.Done, player));
+      _boardState$!.add(MapEntry(BoardState.Done, player));
       return;
     } else if (isBoardFull()) {
-      _boardState$.add(MapEntry(BoardState.Done, null));
-    } else if (_gameMode$.value == GameMode.Solo) {
+      _boardState$!.add(MapEntry(BoardState.Done, null));
+    } else if (_gameMode$!.value == GameMode.Solo) {
       botMove();
     }
   }
 
   botMove() {
-    String player = _player$.value;
-    List<List<String>> currentBoard = _board$.value;
-    List<List<int>> temp = List<List<int>>();
+    String? player = _player$!.value;
+    List<List<String?>> currentBoard = _board$!.value;
+    List<List<int>> temp = [];
     for (var i = 0; i < currentBoard.length; i++) {
       for (var j = 0; j < currentBoard[i].length; j++) {
         if (currentBoard[i][j] == " ") {
@@ -71,38 +73,38 @@ class BoardService {
     int j = temp[r][1];
 
     currentBoard[i][j] = player;
-    _board$.add(currentBoard);
+    _board$!.add(currentBoard);
     switchPlayer(player);
 
     bool isWinner = _checkWinner(i, j);
 
     if (isWinner) {
       _updateScore(player);
-      _boardState$.add(MapEntry(BoardState.Done, player));
+      _boardState$!.add(MapEntry(BoardState.Done, player));
       return;
     } else if (isBoardFull()) {
-      _boardState$.add(MapEntry(BoardState.Done, null));
+      _boardState$!.add(MapEntry(BoardState.Done, null));
     }
   }
 
-  _updateScore(String winner) {
+  _updateScore(String? winner) {
     if (winner == "O") {
-      _score$.add(MapEntry(_score$.value.key, _score$.value.value + 1));
+      _score$!.add(MapEntry(_score$!.value.key, _score$!.value.value + 1));
     } else if (winner == "X") {
-      _score$.add(MapEntry(_score$.value.key + 1, _score$.value.value));
+      _score$!.add(MapEntry(_score$!.value.key + 1, _score$!.value.value));
     }
   }
 
   _playMoveSound(player) {
     if (player == "X") {
-      soundService.playSound('x');
+      soundService!.playSound('x');
     } else {
-      soundService.playSound('o');
+      soundService!.playSound('o');
     }
   }
 
   bool _checkWinner(int x, int y) {
-    var currentBoard = _board$.value;
+    var currentBoard = _board$!.value;
 
     var col = 0, row = 0, diag = 0, rdiag = 0;
     var n = currentBoard.length - 1;
@@ -120,20 +122,20 @@ class BoardService {
     return false;
   }
 
-  void setStart(String e) {
+  void setStart(String? e) {
     _start = e;
   }
 
-  void switchPlayer(String player) {
+  void switchPlayer(String? player) {
     if (player == 'X') {
-      _player$.add('O');
+      _player$!.add('O');
     } else {
-      _player$.add('X');
+      _player$!.add('X');
     }
   }
 
   bool isBoardFull() {
-    List<List<String>> board = _board$.value;
+    List<List<String?>> board = _board$!.value;
     int count = 0;
     for (var i = 0; i < board.length; i++) {
       for (var j = 0; j < board[i].length; j++) {
@@ -146,30 +148,30 @@ class BoardService {
   }
 
   void resetBoard() {
-    _board$.add([
+    _board$!.add([
       [' ', ' ', ' '],
       [' ', ' ', ' '],
       [' ', ' ', ' ']
     ]);
-    _player$.add(_start);
-    _boardState$.add(MapEntry(BoardState.Play, ""));
-    if (_player$.value == "O") {
-      _player$.add("X");
+    _player$!.add(_start);
+    _boardState$!.add(MapEntry(BoardState.Play, ""));
+    if (_player$!.value == "O") {
+      _player$!.add("X");
     }
   }
 
   void newGame() {
     resetBoard();
-    _score$.add(MapEntry(0, 0));
+    _score$!.add(MapEntry(0, 0));
   }
 
   void _initStreams() {
-    _board$ = BehaviorSubject<List<List<String>>>.seeded([
+    _board$ = BehaviorSubject<List<List<String?>>>.seeded([
       [' ', ' ', ' '],
       [' ', ' ', ' '],
       [' ', ' ', ' ']
     ]);
-    _player$ = BehaviorSubject<String>.seeded("X");
+    _player$ = BehaviorSubject<String?>.seeded("X");
     _boardState$ = BehaviorSubject<MapEntry<BoardState, String>>.seeded(
       MapEntry(BoardState.Play, ""),
     );

@@ -15,10 +15,10 @@ class PickPage extends StatefulWidget {
 }
 
 class _PickPageState extends State<PickPage> {
-  final boardService = locator<BoardService>();
-  final soundService = locator<SoundService>();
+  final BoardService? boardService = locator<BoardService>();
+  final SoundService? soundService = locator<SoundService>();
 
-  String groupValue = 'X';
+  String? groupValue = 'X';
   void setGroupvalue(value) {
     setState(() {
       groupValue = value;
@@ -55,7 +55,7 @@ class _PickPageState extends State<PickPage> {
                         child: X(100, 20),
                       ),
                       Radio(
-                        onChanged: (e) => setGroupvalue(e),
+                        onChanged: (dynamic e) => setGroupvalue(e),
                         activeColor: MyTheme.orange,
                         value: 'X',
                         groupValue: groupValue,
@@ -79,7 +79,7 @@ class _PickPageState extends State<PickPage> {
                         child: O(100, MyTheme.green),
                       ),
                       Radio(
-                        onChanged: (e) => setGroupvalue(e),
+                        onChanged: (dynamic e) => setGroupvalue(e),
                         activeColor: MyTheme.orange,
                         value: 'O',
                         groupValue: groupValue,
@@ -100,13 +100,13 @@ class _PickPageState extends State<PickPage> {
               ),
               Btn(
                 onTap: () {
-                  boardService.resetBoard();
-                  boardService.setStart(groupValue);
+                  boardService!.resetBoard();
+                  boardService!.setStart(groupValue);
                   if (groupValue == 'O') {
-                    boardService.player$.add("X");
-                    boardService.botMove();
+                    boardService!.player$!.add("X");
+                    boardService!.botMove();
                   }
-                  soundService.playSound('click');
+                  soundService!.playSound('click');
 
                   Navigator.push(
                     context,

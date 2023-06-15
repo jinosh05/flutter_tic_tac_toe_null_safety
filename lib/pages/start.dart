@@ -12,18 +12,18 @@ import 'package:tic_tac/services/sound.dart';
 import 'package:tic_tac/theme/theme.dart';
 
 class StartPage extends StatelessWidget {
-  final boardService = locator<BoardService>();
-  final soundService = locator<SoundService>();
-  final alertService = locator<AlertService>();
+  final BoardService? boardService = locator<BoardService>();
+  final SoundService? soundService = locator<SoundService>();
+  final AlertService? alertService = locator<AlertService>();
 
-  StartPage({Key key}) : super(key: key);
+  StartPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
         Future.value(false);
-      },
+      } as Future<bool> Function()?,
       child: SafeArea(
         child: Scaffold(
           body: Container(
@@ -68,8 +68,8 @@ class StartPage extends StatelessWidget {
                     children: <Widget>[
                       Btn(
                         onTap: () {
-                          boardService.gameMode$.add(GameMode.Solo);
-                          soundService.playSound('click');
+                          boardService!.gameMode$!.add(GameMode.Solo);
+                          soundService!.playSound('click');
 
                           Navigator.push(
                             context,
@@ -93,8 +93,8 @@ class StartPage extends StatelessWidget {
                       SizedBox(height: 30),
                       Btn(
                         onTap: () {
-                          boardService.gameMode$.add(GameMode.Multi);
-                          soundService.playSound('click');
+                          boardService!.gameMode$!.add(GameMode.Multi);
+                          soundService!.playSound('click');
 
                           Navigator.push(
                             context,
@@ -118,7 +118,7 @@ class StartPage extends StatelessWidget {
                       SizedBox(height: 60),
                       Btn(
                         onTap: () {
-                          soundService.playSound('click');
+                          soundService!.playSound('click');
                           Navigator.push(
                             context,
                             CupertinoPageRoute(

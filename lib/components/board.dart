@@ -10,21 +10,23 @@ import 'package:tic_tac/theme/theme.dart';
 import 'o.dart';
 
 class Board extends StatefulWidget {
-  Board({Key key}) : super(key: key);
+  Board({Key? key}) : super(key: key);
 
   _BoardState createState() => _BoardState();
 }
 
 class _BoardState extends State<Board> {
-  final boardService = locator<BoardService>();
-  final alertService = locator<AlertService>();
+  final BoardService? boardService = locator<BoardService>();
+  final AlertService? alertService = locator<AlertService>();
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<
             MapEntry<List<List<String>>, MapEntry<BoardState, String>>>(
-        stream: Rx.combineLatest2(boardService.board$, boardService.boardState$,
-            (a, b) => MapEntry(a, b)),
+        stream: Rx.combineLatest2(
+            boardService!.board$!,
+            boardService!.boardState$!,
+            (dynamic a, dynamic b) => MapEntry(a, b)),
         builder: (context,
             AsyncSnapshot<
                     MapEntry<List<List<String>>, MapEntry<BoardState, String>>>
@@ -33,11 +35,11 @@ class _BoardState extends State<Board> {
             return Container();
           }
 
-          final List<List<String>> board = snapshot.data.key;
-          final MapEntry<BoardState, String> state = snapshot.data.value;
+          final List<List<String>> board = snapshot.data!.key;
+          final MapEntry<BoardState, String> state = snapshot.data!.value;
 
           if (state.key == BoardState.Done) {
-            boardService.resetBoard();
+            boardService!.resetBoard();
 
             String title = 'Winner';
 
@@ -56,7 +58,7 @@ class _BoardState extends State<Board> {
             WidgetsBinding.instance.addPostFrameCallback((_) => Alert(
                   context: context,
                   title: title,
-                  style: alertService.resultAlertStyle,
+                  style: alertService!.resultAlertStyle!,
                   buttons: [],
                   content: Row(
                       mainAxisSize: MainAxisSize.max,
@@ -96,7 +98,7 @@ class _BoardState extends State<Board> {
                                 GestureDetector(
                                   onTap: () {
                                     if (board[i][j] != ' ') return;
-                                    boardService.newMove(i, j);
+                                    boardService!.newMove(i, j);
                                   },
                                   child: _buildBox(i, j, item),
                                 ),
