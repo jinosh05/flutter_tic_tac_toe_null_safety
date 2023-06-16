@@ -10,12 +10,13 @@ import 'package:tic_tac/theme/theme.dart';
 import 'o.dart';
 
 class Board extends StatefulWidget {
-  Board({Key? key}) : super(key: key);
+  const Board({Key? key}) : super(key: key);
 
-  _BoardState createState() => _BoardState();
+  @override
+  BoardStates createState() => BoardStates();
 }
 
-class _BoardState extends State<Board> {
+class BoardStates extends State<Board> {
   final BoardService? boardService = locator<BoardService>();
   final AlertService? alertService = locator<AlertService>();
 
@@ -38,7 +39,7 @@ class _BoardState extends State<Board> {
           final List<List<String>> board = snapshot.data!.key;
           final MapEntry<BoardState, String> state = snapshot.data!.value;
 
-          if (state.key == BoardState.Done) {
+          if (state.key == BoardState.done) {
             boardService!.resetBoard();
 
             String title = 'Winner';
@@ -48,11 +49,14 @@ class _BoardState extends State<Board> {
             }
 
             Widget body = state.value == 'X'
-                ? X(50, 20)
+                ? const X(50, 20)
                 : (state.value == "O"
                     ? O(50, MyTheme.green)
                     : Row(
-                        children: <Widget>[X(50, 20), O(50, MyTheme.green)],
+                        children: <Widget>[
+                          const X(50, 20),
+                          O(50, MyTheme.green)
+                        ],
                       ));
 
             WidgetsBinding.instance.addPostFrameCallback((_) => Alert(
@@ -68,11 +72,11 @@ class _BoardState extends State<Board> {
           }
 
           return Container(
-            padding: EdgeInsets.all(30),
+            padding: const EdgeInsets.all(30),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   blurRadius: 7.0,
                   spreadRadius: 0.0,
@@ -117,8 +121,8 @@ class _BoardState extends State<Board> {
   }
 
   Widget _buildBox(int i, int j, item) {
-    BoxBorder border = Border();
-    BorderSide borderStyle = BorderSide(width: 1, color: Colors.black26);
+    BoxBorder border = const Border();
+    BorderSide borderStyle = const BorderSide(width: 1, color: Colors.black26);
     double height = 80;
     double width = 60;
     if (j == 1) {
@@ -146,7 +150,7 @@ class _BoardState extends State<Board> {
         child: item == ' '
             ? null
             : item == 'X'
-                ? X(50, 13)
+                ? const X(50, 13)
                 : O(50, MyTheme.green),
       ),
     );

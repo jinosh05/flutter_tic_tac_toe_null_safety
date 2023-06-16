@@ -4,7 +4,7 @@ class O extends StatelessWidget {
   final double size;
   final Color color;
 
-  O(this.size, this.color);
+  const O(this.size, this.color, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class O extends StatelessWidget {
         gradient: RadialGradient(
           radius: 0.18,
           colors: [Colors.transparent, color],
-          stops: [1, 1],
+          stops: const [1, 1],
         ),
       ),
     );

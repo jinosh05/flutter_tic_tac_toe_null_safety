@@ -32,7 +32,7 @@ class StartPage extends StatelessWidget {
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                stops: [0.1, 0.65],
+                stops: const [0.1, 0.65],
                 colors: [
                   MyTheme.orange,
                   MyTheme.red,
@@ -42,7 +42,7 @@ class StartPage extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                Flexible(
+                const Flexible(
                   flex: 1,
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
@@ -68,13 +68,13 @@ class StartPage extends StatelessWidget {
                     children: <Widget>[
                       Btn(
                         onTap: () {
-                          boardService!.gameMode$!.add(GameMode.Solo);
+                          boardService!.gameMode$!.add(GameMode.solo);
                           soundService!.playSound('click');
 
                           Navigator.push(
                             context,
                             CupertinoPageRoute(
-                              builder: (context) => PickPage(),
+                              builder: (context) => const PickPage(),
                             ),
                           );
                         },
@@ -90,16 +90,16 @@ class StartPage extends StatelessWidget {
                               fontWeight: FontWeight.w700),
                         ),
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       Btn(
                         onTap: () {
-                          boardService!.gameMode$!.add(GameMode.Multi);
+                          boardService!.gameMode$!.add(GameMode.multi);
                           soundService!.playSound('click');
 
                           Navigator.push(
                             context,
                             CupertinoPageRoute(
-                              builder: (context) => GamePage(),
+                              builder: (context) => const GamePage(),
                             ),
                           );
                         },
@@ -115,7 +115,7 @@ class StartPage extends StatelessWidget {
                               fontWeight: FontWeight.w700),
                         ),
                       ),
-                      SizedBox(height: 60),
+                      const SizedBox(height: 60),
                       Btn(
                         onTap: () {
                           soundService!.playSound('click');
@@ -123,7 +123,7 @@ class StartPage extends StatelessWidget {
                             context,
                             CupertinoPageRoute(
                               fullscreenDialog: true,
-                              builder: (context) => SettingsPage(),
+                              builder: (context) => const SettingsPage(),
                             ),
                           );
                         },
@@ -131,7 +131,7 @@ class StartPage extends StatelessWidget {
                         height: 50,
                         width: 50,
                         borderRadius: 25,
-                        child: Icon(Icons.settings),
+                        child: const Icon(Icons.settings),
                       ),
                     ],
                   ),

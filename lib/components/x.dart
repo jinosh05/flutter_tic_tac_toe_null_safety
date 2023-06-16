@@ -5,11 +5,11 @@ class X extends StatelessWidget {
   final double size;
   final double height;
 
-  X(this.size, this.height);
+  const X(this.size, this.height, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: size,
       width: size,
       child: Stack(
@@ -18,14 +18,14 @@ class X extends StatelessWidget {
             left: 0,
             top: size / 2 - height / 2,
             child: RotationTransition(
-              turns: AlwaysStoppedAnimation(-45 / 360),
+              turns: const AlwaysStoppedAnimation(-45 / 360),
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(200),
                   gradient: LinearGradient(
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
-                    stops: [0.1, 0.8],
+                    stops: const [0.1, 0.8],
                     colors: [
                       MyTheme.red,
                       MyTheme.orange,
@@ -41,14 +41,14 @@ class X extends StatelessWidget {
             right: 0,
             top: size / 2 - height / 2,
             child: RotationTransition(
-              turns: AlwaysStoppedAnimation(45 / 360),
+              turns: const AlwaysStoppedAnimation(45 / 360),
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(200),
                   gradient: LinearGradient(
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
-                    stops: [0.1, 0.8],
+                    stops: const [0.1, 0.8],
                     colors: [
                       MyTheme.orange,
                       MyTheme.red,

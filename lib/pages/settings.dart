@@ -5,8 +5,9 @@ import 'package:tic_tac/services/sound.dart';
 import 'package:tic_tac/theme/theme.dart';
 
 class SettingsPage extends StatefulWidget {
-  SettingsPage({Key? key}) : super(key: key);
+  const SettingsPage({Key? key}) : super(key: key);
 
+  @override
   SettingsPageState createState() => SettingsPageState();
 }
 
@@ -25,7 +26,7 @@ class SettingsPageState extends State<SettingsPage> {
           final bool isSoundEnabled = snapshot.data!;
 
           return Scaffold(
-            body: Container(
+            body: SizedBox(
               width: MediaQuery.of(context).size.width,
               child: Padding(
                 padding:
@@ -34,8 +35,8 @@ class SettingsPageState extends State<SettingsPage> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 20),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -56,7 +57,7 @@ class SettingsPageState extends State<SettingsPage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Text(
+                        const Text(
                           "Enable Sound",
                           style: TextStyle(
                             color: Colors.black,

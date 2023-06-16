@@ -9,7 +9,7 @@ class Btn extends StatelessWidget {
   final double borderRadius;
   final Widget? child;
 
-  Btn(
+  const Btn(
       {Key? key,
       this.gradient,
       this.color,
@@ -30,12 +30,12 @@ class Btn extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(borderRadius),
           color: color,
-          gradient: this.gradient == null
+          gradient: gradient == null
               ? null
               : LinearGradient(
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
-                  stops: [0.1, 0.8],
+                  stops: const [0.1, 0.8],
                   colors: gradient!),
           boxShadow: [
             BoxShadow(

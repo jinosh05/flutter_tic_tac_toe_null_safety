@@ -9,6 +9,9 @@ import 'package:tic_tac/services/provider.dart';
 import 'package:tic_tac/theme/theme.dart';
 
 class GamePage extends StatefulWidget {
+  const GamePage({super.key});
+
+  @override
   GamePageState createState() => GamePageState();
 }
 
@@ -34,7 +37,7 @@ class GamePageState extends State<GamePage> {
                   final int xScore = snapshot.data!.key;
                   final int oScore = snapshot.data!.value;
 
-                  return Container(
+                  return SizedBox(
                     // color: Colors.red,
                     width: MediaQuery.of(context).size.width,
                     child: Column(
@@ -46,7 +49,8 @@ class GamePageState extends State<GamePage> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
                               Container(
-                                padding: EdgeInsets.symmetric(horizontal: 20),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 20),
                                 color: Colors.white,
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -62,7 +66,7 @@ class GamePageState extends State<GamePage> {
                                         child: Center(
                                             child: Text(
                                           "$xScore",
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               color: Colors.black,
                                               fontSize: 18),
                                         )),
@@ -71,38 +75,38 @@ class GamePageState extends State<GamePage> {
                                     Expanded(
                                       child: Container(),
                                     ),
-                                    X(35, 10),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
+                                    const X(35, 10),
+                                    const Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 10),
                                       child: Text(
-                                        "Player",
+                                        "player",
                                         style: TextStyle(fontSize: 20),
                                       ),
                                     )
                                   ],
                                 ),
                               ),
-                              Container(
-                                  child: Column(
+                              const Column(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[Board()],
-                              )),
+                              ),
                               Container(
-                                padding: EdgeInsets.symmetric(horizontal: 20),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 20),
                                 color: Colors.white,
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
                                     O(35, MyTheme.green),
-                                    Padding(
+                                    const Padding(
                                       padding: EdgeInsets.symmetric(
                                         horizontal: 10,
                                       ),
                                       child: Text(
-                                        "Player",
+                                        "player",
                                         style: TextStyle(fontSize: 20),
                                       ),
                                     ),
@@ -119,7 +123,7 @@ class GamePageState extends State<GamePage> {
                                         child: Center(
                                             child: Text(
                                           "$oScore",
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               color: Colors.black,
                                               fontSize: 18),
                                         )),
@@ -134,7 +138,7 @@ class GamePageState extends State<GamePage> {
                         Container(
                           color: Colors.white,
                           height: 60,
-                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
@@ -142,7 +146,7 @@ class GamePageState extends State<GamePage> {
                                 child: Container(),
                               ),
                               IconButton(
-                                icon: Icon(Icons.home),
+                                icon: const Icon(Icons.home),
                                 onPressed: () {
                                   boardService!.newGame();
                                   Navigator.of(context)

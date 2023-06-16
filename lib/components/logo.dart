@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class Logo extends StatelessWidget {
+  const Logo({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        Container(
+        SizedBox(
           height: 150,
           width: 200,
           child: Stack(
@@ -24,7 +26,7 @@ class Logo extends StatelessWidget {
                         Colors.transparent,
                         Colors.white.withOpacity(.35)
                       ],
-                      stops: [1, 1],
+                      stops: const [1, 1],
                     ),
                   ),
                 ),
@@ -33,7 +35,7 @@ class Logo extends StatelessWidget {
                 left: 0,
                 bottom: 50,
                 child: RotationTransition(
-                  turns: AlwaysStoppedAnimation(-50 / 360),
+                  turns: const AlwaysStoppedAnimation(-50 / 360),
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(200),
@@ -48,7 +50,7 @@ class Logo extends StatelessWidget {
                 right: 50,
                 bottom: 30,
                 child: RotationTransition(
-                  turns: AlwaysStoppedAnimation(40 / 360),
+                  turns: const AlwaysStoppedAnimation(40 / 360),
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(200),

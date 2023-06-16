@@ -11,10 +11,13 @@ import 'package:tic_tac/theme/theme.dart';
 import 'game.dart';
 
 class PickPage extends StatefulWidget {
-  _PickPageState createState() => _PickPageState();
+  const PickPage({super.key});
+
+  @override
+  PickPageState createState() => PickPageState();
 }
 
-class _PickPageState extends State<PickPage> {
+class PickPageState extends State<PickPage> {
   final BoardService? boardService = locator<BoardService>();
   final SoundService? soundService = locator<SoundService>();
 
@@ -29,13 +32,13 @@ class _PickPageState extends State<PickPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Container(
+        body: SizedBox(
           width: MediaQuery.of(context).size.width,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              Text(
+              const Text(
                 "Pic Your Side",
                 style: TextStyle(
                   color: Colors.black,
@@ -52,7 +55,7 @@ class _PickPageState extends State<PickPage> {
                     children: <Widget>[
                       GestureDetector(
                         onTap: () => setGroupvalue('X'),
-                        child: X(100, 20),
+                        child: const X(100, 20),
                       ),
                       Radio(
                         onChanged: (dynamic e) => setGroupvalue(e),
@@ -60,8 +63,8 @@ class _PickPageState extends State<PickPage> {
                         value: 'X',
                         groupValue: groupValue,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
                         child: Text(
                           "First",
                           style: TextStyle(
@@ -84,8 +87,8 @@ class _PickPageState extends State<PickPage> {
                         value: 'O',
                         groupValue: groupValue,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
                         child: Text(
                           "Second",
                           style: TextStyle(
@@ -111,7 +114,7 @@ class _PickPageState extends State<PickPage> {
                   Navigator.push(
                     context,
                     CupertinoPageRoute(
-                      builder: (context) => GamePage(),
+                      builder: (context) => const GamePage(),
                     ),
                   );
                 },
@@ -121,7 +124,7 @@ class _PickPageState extends State<PickPage> {
                 gradient: [MyTheme.orange, MyTheme.red],
                 child: Text(
                   "continue".toUpperCase(),
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w700,
                       fontSize: 16),

@@ -13,13 +13,13 @@ class AlertService {
       animationType: AnimationType.grow,
       isCloseButton: false,
       isOverlayTapDismiss: true,
-      titleStyle: TextStyle(
+      titleStyle: const TextStyle(
           color: Color(0xff111111), fontWeight: FontWeight.w700, fontSize: 25),
-      descStyle: TextStyle(fontWeight: FontWeight.bold),
-      animationDuration: Duration(milliseconds: 300),
-      buttonAreaPadding: EdgeInsets.all(12),
+      descStyle: const TextStyle(fontWeight: FontWeight.bold),
+      animationDuration: const Duration(milliseconds: 300),
+      buttonAreaPadding: const EdgeInsets.all(12),
       overlayColor: Colors.black.withOpacity(.7),
-      constraints: BoxConstraints(maxHeight: 200, maxWidth: 250),
+      constraints: const BoxConstraints(maxHeight: 200, maxWidth: 250),
       alertBorder: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
@@ -28,13 +28,13 @@ class AlertService {
       animationType: AnimationType.fromBottom,
       isCloseButton: false,
       isOverlayTapDismiss: true,
-      titleStyle: TextStyle(
+      titleStyle: const TextStyle(
         color: Color(0xff111111),
         fontWeight: FontWeight.w700,
         fontSize: 25,
       ),
       // animationDuration: Duration(milliseconds: 300),
-      buttonAreaPadding: EdgeInsets.all(12),
+      buttonAreaPadding: const EdgeInsets.all(12),
       // overlayColor: Colors.black.withOpacity(.5),
       // constraints: BoxConstraints(maxHeight: 200, maxWidth: 250),
       alertBorder: RoundedRectangleBorder(
