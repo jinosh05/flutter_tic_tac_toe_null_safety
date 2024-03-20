@@ -20,10 +20,8 @@ class StartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        return await Future.value(false);
-      },
+    return PopScope(
+      canPop: false,
       child: SafeArea(
         child: Scaffold(
           body: Container(

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:tic_tac/components/board.dart';
 import 'package:tic_tac/components/o.dart';
@@ -19,10 +17,10 @@ class GamePageState extends State<GamePage> {
   final BoardService? boardService = locator<BoardService>();
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      canPop: true,
+      onPopInvoked: (didPop) {
         boardService!.newGame();
-        return await Future.value(true);
       },
       child: SafeArea(
         child: Scaffold(
