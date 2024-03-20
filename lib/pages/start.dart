@@ -16,14 +16,14 @@ class StartPage extends StatelessWidget {
   final SoundService? soundService = locator<SoundService>();
   final AlertService? alertService = locator<AlertService>();
 
-  StartPage({Key? key}) : super(key: key);
+  StartPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () {
-        Future.value(false);
-      } as Future<bool> Function()?,
+      onWillPop: () async {
+        return await Future.value(false);
+      },
       child: SafeArea(
         child: Scaffold(
           body: Container(

@@ -20,9 +20,9 @@ class GamePageState extends State<GamePage> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () {
+      onWillPop: () async {
         boardService!.newGame();
-        return Future.value(true);
+        return await Future.value(true);
       },
       child: SafeArea(
         child: Scaffold(

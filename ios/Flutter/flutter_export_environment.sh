@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/home/jinosh/Documents/flutter"
-export "FLUTTER_APPLICATION_PATH=/home/jinosh/Programming/Open_packages/flutter_tic_tac_toe_null_safety"
+export "FLUTTER_ROOT=/Users/jinosh/Documents/flutter"
+export "FLUTTER_APPLICATION_PATH=/Users/jinosh/Programming/Open_packages/tic_tac"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_TARGET=lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"

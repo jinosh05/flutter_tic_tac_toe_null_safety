@@ -10,15 +10,14 @@ class Btn extends StatelessWidget {
   final Widget? child;
 
   const Btn(
-      {Key? key,
+      {super.key,
       this.gradient,
       this.color,
       this.onTap,
       this.child,
       this.borderRadius = 0,
       this.height,
-      this.width})
-      : super(key: key);
+      this.width});
 
   @override
   Widget build(BuildContext context) {

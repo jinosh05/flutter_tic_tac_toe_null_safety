@@ -10,7 +10,7 @@ import 'package:tic_tac/theme/theme.dart';
 import 'o.dart';
 
 class Board extends StatefulWidget {
-  const Board({Key? key}) : super(key: key);
+  const Board({super.key});
 
   @override
   BoardStates createState() => BoardStates();
